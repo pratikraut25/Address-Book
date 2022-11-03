@@ -1,72 +1,28 @@
 package com.Bridgelabz;
 
 public class ContactPerson {
-	private String firstName;
-	private String lastName;
-	private String address;
-	private String city;
-	private String state;
-	private int zipCode;
-	private long mobileNo;
-	private String emailID;
-	
-	/*
-	 * USING GETTER AND SETTER 
-	 * SETTER - Assigning the values to variable using  setter method
-	 * GETTER - Taking the values from variable using getter method
-	 */
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
+	private String firstName, lastName, email, address, city, state;
+	private int zip;
+	private long phonNum;
+
+	ContactPerson(String firstName, String lastName, String email, String address, String city, String state, int zip,
+			long phonNum) {
 		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
+		this.email = email;
 		this.address = address;
-	}
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
 		this.city = city;
-	}
-	public String getState() {
-		return state;
-	}
-	public void setState(String state) {
 		this.state = state;
+		this.zip = zip;
+		this.phonNum = phonNum;
 	}
-	public int getZipCode() {
-		return zipCode;
+
+	String getName() {
+		return firstName + lastName;
 	}
-	public void setZipCode(int zipCode) {
-		this.zipCode = zipCode;
-	}
-	public long getMobileNo() {
-		return mobileNo;
-	}
-	public void setMobileNo(long mobileNo) {
-		this.mobileNo = mobileNo;
-	}
-	public String getEmailID() {
-		return emailID;
-	}
-	public void setEmailID(String emailID) {
-		this.emailID = emailID;
-	}
-	@Override
 	public String toString() {
-		return "Contact [firstName=" + firstName + ", lastName=" + lastName + ", address=" + address + ", city=" + city
-				+ ", state=" + state + ", zipCode=" + zipCode + ", mobileNo=" + mobileNo + ", emailID=" + emailID + "]";
+		return "Person Name: " + firstName + " " + lastName + "\nPerson Address: " + address + ", " + city + ", "
+				+ state + "\nPerson Email: " + email + "\nPerson Postal Code: " + zip + "\nPerson Phone number: "
+				+ phonNum + "\n\n";
 	}
-	
 }

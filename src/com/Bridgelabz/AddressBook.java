@@ -1,39 +1,86 @@
 package com.Bridgelabz;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 public class AddressBook {
-	Scanner sc = new Scanner(System.in);
-	ArrayList<Contact> contactArrayList = new ArrayList<Contact>();
+	private Scanner scanner = new Scanner(System.in);
+	private String fname, lname, mail, address, city, state;
+	private int zip, i;
+	private long phone;
+	private ArrayList<ContactPerson> persons = new ArrayList<>();
+	private static int count;
+	private boolean checkEquality;
 
-	public void addContact() {
-
-		Contact contact = new Contact();
-
-		System.out.println("Enter the First Name : ");
-		contact.setFirstName(sc.next());
-		System.out.println("Enter the Last Name : ");
-		contact.setLastName(sc.next());
-		System.out.println("Enter the Address: ");
-		contact.setAddress(sc.next());
-		System.out.println("Enter the City : ");
-		contact.setCity(sc.next());
-		System.out.println("Enter the State : ");
-		contact.setState(sc.next());
-		System.out.println("Enter the Zip code : ");
-		contact.setZipCode(sc.nextInt());
-		System.out.println("Enter the Mobile Number : ");
-		contact.setMobileNo(sc.nextInt());
-		System.out.println("Enter the Email ID : ");
-		contact.setEmailID(sc.next());
-
-		contactArrayList.add(contact);
+	private void inputNames() {
+		System.out.println("Enter first name: ");
+		fname = scanner.next();
+		System.out.println("Enter last name: ");
+		lname = scanner.next();
 	}
 
-	public void displayContact() {
+	private void inputContacts() {
+		System.out.println("Enter email: ");
+		mail = scanner.next();
+		scanner.nextLine();
+		System.out.println("Enter address: ");
+		address = scanner.nextLine();
+		System.out.println("Enter city: ");
+		city = scanner.next();
+		scanner.nextLine();
+		System.out.println("Enter state: ");
+		state = scanner.nextLine();
+		System.out.println("Enter postal(zip) code: ");
+		zip = scanner.nextInt();
+		System.out.println("Enter phone number: ");
+		phone = scanner.nextLong();
+	}
 
-		for (int i = 0; i < contactArrayList.size(); i++) {
-			Contact contact = contactArrayList.get(i);
-			System.out.println(contact.toString());
+	void addPerson() {
+		count++;
+		System.out.println("Enter Person " + count + " Details:");
+		inputNames();
+		inputContacts();
+		persons.add(new ContactPerson(fname, lname, mail, address, city, state, zip, phone));
+
+	}
+
+	private boolean areNamesEqual() {
+		for (i = 0; i < persons.size(); i++)
+			if (persons.get(i).getName().equals(fname + lname)) {
+				System.out.println("Match found at position " + i);
+				return true;
+			}
+		return false;
+	}
+
+	void updatePerson() {
+		inputNames();
+		checkEquality = areNamesEqual();
+		if (checkEquality) {
+			inputContacts();
+			persons.set(i, new ContactPerson(fname, lname, mail, address, city, state, zip, phone));
+			System.out.println("Person " + (i + 1) + " Contact updated successfully!");
 		}
+		else
+			System.out.println("No match available!");
+	}
 
+	void deletePerson() {
+		inputNames();
+		checkEquality = areNamesEqual();
+		if (checkEquality) {
+			persons.remove(i);
+			System.out.println("Person " + (i + 1) + " Contact removed successfully!");
+		}
+		else
+			System.out.println("No match available!");
+	}
+
+	public String toString() {
+		String personsData = "";
+		for (i = 0; i < count; i++) {
+			personsData += "Person " + (i + 1) + " Details:\n";
+			personsData += persons.get(i);
+		}
+		return personsData;
 	}
 }
