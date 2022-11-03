@@ -10,11 +10,6 @@ public class ContactPerson {
 	private long mobileNo;
 	private String emailID;
 	
-	/*
-	 * USING GETTER AND SETTER 
-	 * SETTER - Assigning the values to variable using  setter method
-	 * GETTER - Taking the values from variable using getter method
-	 */
 	public String getFirstName() {
 		return firstName;
 	}
@@ -68,5 +63,6 @@ public class ContactPerson {
 		return "Contact [firstName=" + firstName + ", lastName=" + lastName + ", address=" + address + ", city=" + city
 				+ ", state=" + state + ", zipCode=" + zipCode + ", mobileNo=" + mobileNo + ", emailID=" + emailID + "]";
 	}
+	
 	
 }
